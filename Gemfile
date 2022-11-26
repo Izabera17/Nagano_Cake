@@ -62,3 +62,5 @@ gem 'net-smtp'
 gem "font-awesome-rails"
 
 gem "enum_help"
+
+gem 'kaminari','~> 1.2.1'
