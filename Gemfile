@@ -61,3 +61,4 @@ gem 'net-smtp'
 
 gem "font-awesome-rails"
 
+gem "enum_help"

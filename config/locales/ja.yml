@@ -1,0 +1,8 @@
+  ja:
+    enums:
+      item:
+        genre_id:
+          baked_sweets: "焼き菓子"
+          cake: "ケーキ"
+          pudding: "プリン"
+          candy: "キャンディ"
