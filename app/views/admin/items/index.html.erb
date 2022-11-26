@@ -6,3 +6,15 @@
   <i class="fa fa-arrow-right"></i>
   <span>新規登録</span>
 <% end %>
+
+
+<% @items.each do |item| %>
+  <div>
+    <p>商品画像：<%= image_tag item.get_image(100, 100) %></p>
+    <p>商品名：<%= item.name %></p>
+    <p>商品説明：<%= item.introduction %></p>
+    <p>ジャンル：<%= item.genre_id %></p>
+    <p>税込価格：<%= item.price %></p>
+    <p>販売ステータス：<%= item.is_active %></p>
+  </div>
+<% end %>
