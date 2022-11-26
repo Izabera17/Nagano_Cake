@@ -1,2 +1,35 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<h1>商品新規登録</h1>
+  <%= form_with model: @item do |f| %>
+    <p>
+      <%= f.label :image, "商品画像" %>
+      <%= f.file_field :image, accept: "image/*" %>
+    </p>
+    <p>
+      <%= f.label :name, "商品名" %>
+      <%= f.text_field :name, placeholder: "商品名" %>
+    </p>
+    <p>
+      <%= f.label :introduction, "商品説明" %>
+      <%= f.text_area :introduction, placeholder: "ここに説明文を記述します" %>
+    </p>
+    <p>
+      <%= f.label :genre_id, "ジャンル" %>
+      <%= f.select :genre_id, [["焼き菓子", 0], ["ケーキ", 1],  ["プリン", 2], ["キャンディ", 3]], :prompt => "選択してください" %>
+    </p>
+    <p>
+      <%= f.label :price, "税抜価格" %>
+      <%= f.text_field :price, placeholder: "1000" %>円
+    </p>
+    <p>
+      <%= f.label :is_active, "販売ステータス" %>
+      <%= f.label :is_active, value: 'yes' do %>
+        <%= f.radio_button :is_active, 'yes', checked: true %>
+        販売中
+      <% end %>
+      <%= f.label :is_active, value: 'no' do %>
+        <%= f.radio_button :is_active, 'no' %>
+        販売停止中
+      <% end %>
+    </p>
+     <%= f.submit '新規登録' %>
+  <% end %>

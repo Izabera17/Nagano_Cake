@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: "homes#top"
-    resources :homes, only: [:top, :about]
+    get 'about' => 'homes#about'
     resources :items, only: [:index, :show]
     resources :customers, only: [:show, :edit, :update, :confirmation, :withdrawal]
     resources :cart_items, only: [:index, :update, :destroy, :all_destroy, :create]
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    resources :homes, only: [:top]
+    get '' => 'homes#top'
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
