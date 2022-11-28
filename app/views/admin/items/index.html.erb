@@ -22,12 +22,13 @@
       </tr>
     </thead>
     <tbody>
+
       <% @items.each do |item| %>
         <tr>
           <td><%= item.id %></td>
           <td><%= link_to item.name, admin_item_path(item.id) %></td>
           <td><%= item.price.to_s(:delimited) %></td>
-          <td><%= item.genre_id_i18n %></td>
+          <td><%= @genre %></td>
           <td>
             <% if item.is_active == true %>
               <span class="text-success">販売中</span>
@@ -41,7 +42,7 @@
   </table>
 </div>
 <div class="text-center">
-  <%= paginate @items, class: "text-center" %>  
+  <%= paginate @items_p, class: "text-center" %>  
 </div>
 
 

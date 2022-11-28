@@ -1,6 +1,17 @@
 class Admin::ItemsController < ApplicationController
+  
   def index
-    @items = Item.page(params[:page])
+    @items_p = Item.page(params[:page])
+    if params[:genre_id]
+      # Categoryのデータベースのテーブルから一致するidを取得
+      @genre = Genre.find(params[:genre_id])
+       
+      # category_idと紐づく投稿を取得
+      @items = @genre.items.order(created_at: :asc).all
+    else
+      # 投稿すべてを取得
+      @items = Item.order(created_at: :asc).all
+    end
   end
 
   def new
@@ -9,12 +20,14 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @items = Item.new(item_params)
+    
     if @items.save!
       redirect_to admin_item_path(@items.id)
     else
       @items = Item.all 
       render :index
     end
+    binding.pry
   end
 
   def show
@@ -34,6 +47,6 @@ class Admin::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_active, :image)
+    params.require(:item).permit(:name, :introduction, :price, :is_active, :image, :genre_id)
   end
 end

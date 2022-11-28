@@ -8,27 +8,31 @@ class Admin::GenresController < ApplicationController
 
   def create
     @genre = Genre.new(genre_params)
-    if @genre.save
-      redirect_to categories_path
+     
+    if @genre.save!
+      redirect_to admin_genres_path
     else
       @genres = Genre.all
       render 'index'
+    end
+    binding.pry
   end
 
   def edit
+    @genre = Genre.find(params[:id])
   end
 
-   def update
+  def update
     if @genre.update(genre_params)
-      redirect_to categories_path
+      redirect_to admin_genres_path
     else
-      render 'edit'
+    render 'edit'
     end
   end
-
+    
   def destroy
     @genre.destroy
-    redirect_to categories_path
+    redirect_to  admin_genres_path
   end
 
   private
@@ -38,7 +42,6 @@ class Admin::GenresController < ApplicationController
   end
 
   def genre_params
-      params.require(:category).permit(:name)
+      params.require(:genre).permit(:name)
   end
-
 end
