@@ -13,58 +13,63 @@
 
 <body class="d-flex flex-column vh-100">
   <header class="shadow-sm">
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-        <a class="navbar-brand my-auto" href="#">LOGO</a>
-       
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav mr-auto">
+        <div class="collapse navbar-collapse ml-auto flex-column" id="navbarNavDropdown" >
+          <ul class="navbar-nav ml-auto ">
             <% if customer_signed_in? %>
               <li class="nav-item">
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark'  %>
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-outline-secondary' %>
               </li>
             <% elsif admin_signed_in? %>  
-               <li class="nav-item">
-                <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark'  %>
+               <li class="nav-item  pr-5">
+                <%= link_to "商品一覧", admin_items_path, class: 'btn btn-outline-secondary me-1em' %>
               </li>
-              <li class="nav-item">
-                <%= link_to "会員一覧",  admin_customers_path, class: 'nav-link text-dark'  %>
+              <li class="nav-item  pr-5">
+                <%= link_to "会員一覧",  admin_customers_path, class: 'btn btn-outline-secondary' %>
               </li>
-              <li class="nav-item">
-                <%= link_to "注文履歴一覧", admin_path, class: 'nav-link text-dark'  %>
+              <li class="nav-item d-inline pr-5">
+                <%= link_to "注文履歴一覧", admin_path, class: 'btn btn-outline-secondary'  %>
               </li>
-               <li class="nav-item">
-                <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark'  %>
+               <li class="nav-item d-inline pr-5"> 
+                <%= link_to "ジャンル一覧", admin_genres_path, class: 'btn btn-outline-secondary' %>
               </li>
-              <li class="nav-item">
-                <%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: 'nav-link text-dark'  %>
+              <li class="nav-item d-inline ">
+                <%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: 'btn btn-outline-secondary' %>
               </li>
             <% else %>
-              <li class="nav-item">
-                <%= link_to "About", about_path, class: 'nav-link text-dark' %>
+              <li class="nav-item d-inline pr-5">
+                <%= link_to "About", about_path, class: 'btn btn-outline-secondary' %>
               </li>
-              <li class="nav-item">
-                <%= link_to "商品一覧", items_path, class: 'nav-link text-dark'  %>
+              <li class="nav-item d-inline pr-5">
+                <%= link_to "商品一覧", items_path, class: 'btn btn-outline-secondary' %>
               </li>
-              <li class="nav-item">
-                <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark'  %>
+              <li class="nav-item d-inline pr-5">
+                <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-outline-secondary' %>
               </li>
-               <li class="nav-item">
-                <%= link_to "ログイン", new_admin_session_path, class: 'nav-link text-dark'  %>
+               <li class="nav-item d-inline">
+                <%= link_to "ログイン", new_admin_session_path, class: 'btn btn-outline-secondary' %>
               </li>
             <% end %>
           </ul>
-            <form class="d-flex flex-row-reverse ml-auto mb-2 form-inline">
-              <input class="form-control ml-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+          <ul class="navbar-nav ml-auto">
+          <form class="d-flex my-2 my-md-0 pt-4">
+            <input class="form-control me-2 nav-item d-inline p-2" type="search" placeholder="Search" placeholder="Search">
+            <button class="btn btn-outline-success text-nowrap" type="submit" >Search</button>
+          </form> 
+          </ul>
         </div>
+      </div>
     </nav>
   </header>
     <%= yield %>
+    
   </body>
 </html>

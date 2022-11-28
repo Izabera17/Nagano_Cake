@@ -1,37 +1,26 @@
-
-
-<div class="container">
-  <div class="row">
-      <div class= "mx-auto col-8 col-sm-10 col-lg-8 col-xl-6">
-        <h1>管理者ログイン</h1>
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <div class="field">
-              <%= f.label :email, "メールアドレス"  %><br />
-              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-            </div>
-          
-            <div class="field">
-              <%= f.label :password, "パスワード"  %><br />
-              <%= f.password_field :password, autocomplete: "current-password" %>
-            </div>
-          
-            <% if devise_mapping.rememberable? %>
-              <div class="field">
-                <%= f.check_box :remember_me %>
-                <%= f.label :remember_me %>
-              </div>
-            <% end %>
-          
-            <div class="actions">
-              <%= f.submit "ログイン" %>
-            </div>
-          <% end %>
+  <div class="container-fluid">
+    <div class="col-md-10 mx-auto">
+    <h4 class="m-5 text-md-end text-left" >
+      <span class="text-white bg-secondary px-4">管理者ログイン</span>
+    </h4>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="row justify-content-center">
+        <%= f.label :email, "メールアドレス", class: "col-md-3 col-form-label text-md-end text-center"%>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'col-md-4' %>
       </div>
+  
+      <div class="row justify-content-center mt-3 mb-5">
+        <%= f.label :password, "パスワード", class: "col-md-3 col-form-label text-md-end text-center" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: 'col-md-4 form-control'%>
+      </div>
+        
+      <div class="actions text-center mt-10 ">
+        <%= f.submit "ログイン", class: "btn btn-primary" %>
+      </div>
+      <% end %>
     </div>
-</div>
-    
-    
-    
+  </div>  
 
 
+    
 <%= render "admin/shared/links" %>
