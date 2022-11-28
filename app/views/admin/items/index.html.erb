@@ -1,17 +1,17 @@
 
-<div class="mx-auto" style="width: 60%;">
+<div class="mx-auto mt-4" style="width: 60%;">
   <div class="row justify-content-between">
     <h4 class="m-4 text-md-end text-left" >
       <span class="text-white bg-secondary px-4">管理者側：商品一覧</span>
     </h4>
     <div class="m-4">
       <%= link_to new_admin_item_path do %>
-        <i class="fas fa-plus-circle fa-2x"></i>
+        <i class="fas fa-plus-circle fa-3x"></i>
       <% end %>  
     </div>
   </div>
   
-  <table class="table text-center">
+  <table class="table text-center mt-2">
     <thead class="bg-light">
       <tr>
         <th scope="col">商品ID</th>
@@ -26,7 +26,7 @@
         <tr>
           <td><%= item.id %></td>
           <td><%= link_to item.name, admin_item_path(item.id) %></td>
-          <td><%= item.price %></td>
+          <td><%= item.price.to_s(:delimited) %></td>
           <td><%= item.genre_id_i18n %></td>
           <td>
             <% if item.is_active == true %>

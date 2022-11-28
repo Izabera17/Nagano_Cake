@@ -1,8 +1,6 @@
   <div class="container-fluid">
     <div class="col-md-10 mx-auto">
-    <h4 class="m-5 text-md-end text-left" >
-      <span class="text-white bg-secondary px-4">管理者ログイン</span>
-    </h4>
+  
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="row justify-content-center">
         <%= f.label :email, "メールアドレス", class: "col-md-3 col-form-label text-md-end text-center"%>
@@ -21,6 +19,4 @@
     </div>
   </div>  
 
-
-    
 <%= render "admin/shared/links" %>

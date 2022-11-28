@@ -1,38 +1,45 @@
-<table>
-  <tbody>
-    <tr>
-      <td rowspan="5"><%= image_tag @items.get_image(300, 300) %></td>
-    </tr>
-    <tr>
-      <td>商品名：</td>
-      <td><%= @items.name %></td>
-    </tr>
-    <tr>
-      <td>商品説明：</td>
-      <td><%= @items.introduction %></td>
-    </tr>
-    <tr>
-      <td>ジャンル: </td>
-      <td><%= @items.genre_id_i18n %></td>
-    </tr>
-    <tr>
-      <td>税抜価格<br>(税込価格)</td>
-      <td><%= @items.price %><br><%= (@items.price * 1.1).floor%></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>販売ステータス</td>
-      <td>
-         <% if @items.is_active == true %>
-            販売中
+<div class="container-fluid">
+  <div class="row justify-content-center mb-5">
+    <div class="col-3">
+      <h4 class="my-4 text-md-end text-center">
+        <span class="text-white bg-secondary px-4">商品詳細</span>
+      </h4>
+    </div>
+    <div class="col-3"></div>
+    <div class="col-3"></div>
+  </div>
+  
+  <div class="row justify-content-center">
+    <div class="col-3 p-0">
+      <div class="col-md-12 p-0 ">
+        <%= image_tag @items.get_image(250, 250) %>  
+      </div>
+    </div>
+    <div class="col-2 p-0">
+      <div class="col-md-12 mb-4 mt-2 p-0 ">商品名：</div>
+      <div class="col-md-12 mb-4 p-0">商品説明：</div>
+      <div class="col-md-12 mb-4 p-0">ジャンル：</div>
+      <div class="col-md-12 mb-4 p-0">税抜価格：<br>税込価格</div>
+      <div class="col-md-12 m-0 p-0">販売ステータス：</div>
+    </div>
+    <div class="col-3 p-0">
+      <div class="col-md-12 mb-4 mt-2 p-0"><%= @items.name %></div>
+      <div class="col-md-12 mb-4 p-0"><%= @items.introduction %></div>
+      <div class="col-md-12 mb-4 p-0"><%= @items.genre_id_i18n %></div>
+      <div class="col-md-12 mb-5 p-0"><%= @items.price.to_s(:delimited) %>（<%= ((@items.price * 1.1).floor).to_s(:delimited) %>）円</div>
+      <div class="col-md-12 mb-4 p-0">
+        <% if @items.is_active == true %>
+          <span class="text-success ">販売中</span>
         <% else %>
-            販売停止中
-        <% end %> 
-      </td>
-    </tr>
-  </tbody>
- </table>
- <div class="w-25 mx-auto mt-10">
- <%= link_to "編集する", edit_admin_item_path(@items), class: 'btn btn-sm btn-success btn-block' %>    
- </div>
+          <span class="text-secondary">販売停止中</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mx-auto mt-4">
+  <%= link_to "編集する", edit_admin_item_path(@items), class: 'btn-lg btn-success btn-block px-5' %>    
+</div>
+
+ 
  
