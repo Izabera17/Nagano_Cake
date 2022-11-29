@@ -31,7 +31,7 @@
     </div>
     <div class="row mb-4 justify-content-center">
       <%= f.label :genre_id, "ジャンル", class: "col-md-2 col-form-labal text-md-start" %>
-      <%= f.select :genre_id, Item.genre_ids.keys.map {|k| [I18n.t("enums.item.genre_id.#{k}"), k]} , {prompt: "選択してください"}, class: 'col-md-4'%>
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, { prompt: '選択してください' }, class: 'col-md-4' %>
       <div class="col-md-1">
       </div>
     </div>

@@ -1,8 +1,13 @@
   <div class="container-fluid">
-    <div class="col-md-10 mx-auto">
-  
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="row justify-content-center">
+    <div class="row mt-3 mb-4 justify-content-center">
+      <h4 class="my-4 text-md-end text-left" >
+        <span class="text-white bg-secondary px-4">管理者ログイン</span>
+      </h4>
+      <div class="col-md-5">
+      </div>
+    </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="row justify-content-center">
         <%= f.label :email, "メールアドレス", class: "col-md-3 col-form-label text-md-end text-center"%>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'col-md-4' %>
       </div>
