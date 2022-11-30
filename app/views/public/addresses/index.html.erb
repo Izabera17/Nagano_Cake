@@ -8,43 +8,41 @@
   </div>
   <%= form_with url: addresses_path, model: @address, local:true do |f| %>
     <div class="row mb-4 justify-content-center">
-      <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "col-md-3 p-0 col-form-labal text-md-start" %>
-      <%= f.text_field :postal_code, placeholder: "0000000", class: 'col-md-4'  %>
-      <div class="col-md-1">
+      <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: 'col-md-2 p-0 text-center' %>
+      <%= f.text_field :postal_code, placeholder: "0000000", class: 'col-md-3'  %>
+      <div class="col-md-2">
       </div>
     </div>
     <div class="row mb-4 justify-content-center">
-      <%= f.label :address, "住所", class: "col-md-3 p-0 col-form-labal text-md-start" %>
-      <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: 'col-md-4', size: 30 %>
-      <div class="col-md-1">
+      <%= f.label :address, "住所", class: "col-md-2 p-0 text-center" %>
+      <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: 'col-md-3' %>
+      <div class="col-md-2">
       </div>
     </div>
-    <div class="row mb-4 justify-content-center">
-      <%= f.label :name, "宛名", class: "col-md-3 p-0 col-form-labal text-md-start" %>
-      <%= f.text_field :name, placeholder: "令和道子", rows: 8, class: 'col-md-4' %>
-      <div class="col-md-1">
+    <div class="row mb-5 justify-content-center">
+      <%= f.label :name, "宛名", class: "col-md-2 p-0 text-center" %>
+      <%= f.text_field :name, placeholder: "令和道子", rows: 8, class: 'col-md-3' %>
+      <div class="col-md-2 text-center">
+        <%= f.submit '変更内容を保存', class: 'btn btn-success border-0' %>
       </div>
-    </div>
-    <div class="d-flex justify-content-center">
-      <%= f.submit '新規登録', class: 'btn-lg btn-success border-0' %>
     </div>
   <% end %>
   
-  <table class="table">
+  <table class="table col-md-8 mx-auto">
     <% @addresses.each do |address| %>
     <thead class="bg-light">
       <tr>
-        <th><%= address.label :postal_code, "郵便番号" %></th>
-        <th><%= address.label :address, "住所" %></th>
-        <th><%= address.label :name, "宛名" %></th>
+        <th>郵便番号></th>
+        <th>住所</th>
+        <th>宛名</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><%= item.postal_code %></th>
-        <td><%= item.address %></td>
-        <td><%= item.name %></td>
+        <td><%= address.postal_code %></th>
+        <td><%= address.address %></td>
+        <td><%= address.name %></td>
         <td><%= link_to '編集する', edit_address_path(address.id), class: 'btn-sm btn-primary' %>
             <%= link_to '削除', address_path(address.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn-sm btn-danger' %>
         </td>
