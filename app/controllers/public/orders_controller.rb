@@ -47,7 +47,7 @@ class Public::OrdersController < ApplicationController
     @order.save
 
     current_customer.cart_items.each do |cart_item|
-      @order_item = OrderItem.new #初期化宣言
+      @order_item = OrderDetail.new #初期化宣言
       @order_item.item_id = cart_item.item_id #商品idを注文商品idに代入
       @order_item.amount = cart_item.amount #商品の個数を注文商品の個数に代入
       @order_item.purchase_amount = (cart_item.item.price*1.1).floor #消費税込みに計算して代入
@@ -55,8 +55,8 @@ class Public::OrdersController < ApplicationController
       @order_item.save #注文商品を保存
     end
 
-    current_customer.cart_items.destroy_all #カートの中身を削除
-    redirect_to orders_thanks_path #thanksに遷移
+    current_customer.cart_items.destroy_all 
+    redirect_to orders_complete_path 
   end
 
   def index
