@@ -6,6 +6,9 @@ class Public::ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.new
+    @items = Item.find(params[:id])
+    @cart_item = CartItem.new
   end
   
    def search
@@ -14,4 +17,5 @@ class Public::ItemsController < ApplicationController
     @genres = Genre.where(valid_invalid_status: 0)
     render 'index' # renderを使用してviewファイルを表示したときにはactionを呼び出し処理をしているわけではないため、上記のように必要な変数を用意しておく必要がある、
   end
+  
 end
