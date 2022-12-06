@@ -36,14 +36,14 @@ class Public::CartItemsController < ApplicationController
 			else
 				@items = Item.where(is_active: 1).page(params[:page]).per(8) #販売ステータスが「0」のものを見つける
 		    @quantity = Item.count #商品の数をカウント
-				render 'index' #indexアクションを呼び出す
+				render 'index' 
 		end
 	end
 
 	else
-		@cart_item = CartItem.new(cart_item_params)#新しくカートの作成
-		@cart_item.customer_id = current_customer.id#誰のカートか紐付け
-		if @cart_item.save#情報を保存できるか？
+		@cart_item = CartItem.new(cart_item_params)
+		@cart_item.customer_id = current_customer.id
+		if @cart_item.save
 			 redirect_to cart_items_path#カートページ遷移
 		else
 			@items = Item.where(is_active: 1).page(params[:page]).per(8)#販売ステータスが「0」のものを見つける
