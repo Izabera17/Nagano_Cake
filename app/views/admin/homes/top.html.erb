@@ -1,2 +1,53 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<div class="mx-auto mt-4" style="width: 60%;">
+  <div class="row justify-content-between">
+    <h4 class="m-4 text-md-end text-left" >
+      <span class="text-white bg-secondary px-4">注文履歴一覧</span>
+    </h4>
+    <div class="m-4">
+    </div>
+  </div>
+  <table class="table text-center mt-2">
+    <thead class="bg-light">
+      <tr>
+        <th>購入日時</th>
+        <th>購入者</th>
+        <th>注文個数</th>
+        <th>注文ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+          <% %>
+  　　　　　<tr>
+          <td>
+            <%= link_to admin_order_path(order) do %>
+              <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+            <% end %>
+          </td>
+        
+            <td><%= order.customer.first_name %><%= order.customer.last_name %></td>
+            <td><%= order.order_details.sum(:amount) %></td>
+            <td>
+              <% if order.order_status == "wait" %>
+                <%= Order.order_statuses_i18n[:wait] %>
+              <% elsif order.order_status == "confirmation" %>
+                <%= Order.order_statuses_i18n[:confirmation] %>
+              <% elsif order.order_status == "production" %>
+                <%= Order.order_statuses_i18n[:production] %>
+              <% elsif order.order_status == "preparation" %>
+                <%= Order.order_statuses_i18n[:preparation] %>
+              <% else %>
+                <%= Order.order_statuses_i18n[:sent] %>
+              <% end %>
+            </td>
+          </tr>
+　　　　　<% end %>
+    </tbody>
+  </table>
+</div>
+<div class="text-center">
+  <%= paginate @item, class: "text-center" %>
+</div>
+
+
+

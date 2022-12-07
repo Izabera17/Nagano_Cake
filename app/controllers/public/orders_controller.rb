@@ -17,6 +17,7 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.first_name+current_customer.last_name
 
+
     elsif  params[:order][:select_address] ==  "2"
       @order.postal_code = Address.find(params[:order][:address_id]).postal_code
       @order.address = Address.find(params[:order][:address_id]).address
@@ -29,7 +30,7 @@ class Public::OrdersController < ApplicationController
       @address.postal_code = params[:order][:postal_code]
       @address.customer_id = current_customer.id
 
-      if @address.save!
+      if @address.save
         @order.postal_code = @address.postal_code
         @order.name = @address.name
         @order.address = @address.address
@@ -52,10 +53,10 @@ class Public::OrdersController < ApplicationController
 
     current_customer.cart_items.each do |cart_item|
       @order_item = OrderDetail.new
-      @order_item.item_id = cart_item.item_id 
-      @order_item.amount = cart_item.amount 
-      @order_item.purchase_amount = (cart_item.item.price*1.1).floor 
-      @order_item.order_id =  @order.id 
+      @order_item.item_id = cart_item.item_id
+      @order_item.amount = cart_item.amount
+      @order_item.purchase_amount = (cart_item.item.price*1.1).floor
+      @order_item.order_id =  @order.id
       @order_item.save!
     end
 
@@ -64,9 +65,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id]) 
+    @order = Order.find(params[:id])
     @order_detail = @order.order_details
-    @total = 0 
+    @total = 0
   end
 
   private

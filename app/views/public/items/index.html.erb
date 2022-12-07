@@ -1,19 +1,36 @@
-<div class="container">
+<div class="container mx-auto mt-5">
   <div class="row">
-
-  	<%= render "public/shared/sidebar", genres: @genres %>
-  
-    <div class="col-md-1">
+    <div class="col-md-3">
     </div>
-    
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <table class="table table-bordered">
+        <thead class="table-active">
+          <tr>
+            <th>ジャンル検索</th>
+          </tr>
+        </thead>
+        <tbody class="table-borderless">
+          <% @genres.each do |genre| %>
+            <td>
+              <%= link_to genre.name, items_path(genre_id: genre.id) %>
+            </td>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
   	<div class="col-md-9">
-  	  <h2>商品一覧（全<%= @quantity %>件）</h2><br>
+  	  <h2>商品一覧（全<span><%= @quantity %></span>件）</h2><br>
   	    <div class="row">
   	      <% @items.each do |item| %>
             <div class="box">
             <%= link_to item_path(item.id) do %>
-              <%= image_tag item, :size =>'170x170' %>
-
+              <% if item.image.attached? %>
+                <%= image_tag item.image, size: '200x200' %>
+              <% else %>
+                <%= image_tag 'no_image.jpg' %>
+              <% end %>
             <% end %>
               <p><%= item.name %></p>
               <p>¥<%= (item.price*1.1).floor %></p> 
