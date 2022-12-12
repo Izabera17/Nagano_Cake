@@ -2,7 +2,7 @@
 	<h2>注文情報確認</h2>
 	<%= form_for  @order,url: {action: 'create'} do |f| %>
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-xs-6">
 			<table align="left" class="table table-bordered">
 				<tr>
 					<th>商品名</th>
@@ -50,9 +50,13 @@
 		</div><br>
 
 		<p><strong>支払方法</strong>
-			<%= @order.payment_method %>
+			<% if @order.payment_method == "credit_card" %>
+        		<%= Order.payment_methods_i18n[:credit_card] %>
+      		<% elsif @order.payment_method == "transfer" %>
+         		<%= Order.payment_methods_i18n[:transfer] %>
+      		<% end %>
 		</p><br>
-
+		
 		<p><strong>お届け先 </strong><%= @order.postal_code %> <%= @order.address %> <%= @order.name %></p><br>
 		<%= f.hidden_field :payment_method ,:value => @order.payment_method %>
 		<%= f.hidden_field :postage ,:value => 800 %>
@@ -64,7 +68,7 @@
 			<%= f.submit "購入を確定する", class: "btn btn-success text-cenrer btn-lg" %>
 		</div>
 		<% end %>
-		<%= form_for @order, url: new_order_path,method: :get do |f| %><!-- 入力画面に戻る用 -->
+		<%= form_for @order, url: new_order_path,method: :get do |f| %>
         <%= f.hidden_field :order,:value => @order %>
         <%= f.submit '入力画面へ戻る' ,class: "btn btn-primary" %>
 <% end %>

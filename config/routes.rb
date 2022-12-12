@@ -19,7 +19,8 @@ Rails.application.routes.draw do
     resources :items, only:[:index,:show,:new] do
         get :search, on: :collection # ジャンル検索機能用
     end
-    resource :customers, only: [:show ,:edit,:update]
+    resource :customers, only: [:show ,:update]
+    get "customers/information/edit" => "customers#edit"
     get "customers/confirmation" => "customers#confirmation"
     patch "customers/withdrawal" => "customers#withdrawal"
 

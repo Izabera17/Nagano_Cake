@@ -9,7 +9,6 @@ class Public::OrdersController < ApplicationController
   end
 
   def information
-    params[:order][:payment_method] = params[:order][:payment_method].to_i
     @order = Order.new(order_params)
 
     if params[:order][:select_address] == "1"
@@ -69,7 +68,7 @@ class Public::OrdersController < ApplicationController
     @order_detail = @order.order_details
     @total = 0
   end
-
+  
   private
 
   def order_params

@@ -1,2 +1,86 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<div class="container-fluid">
+  <div class="row mb-1 justify-content-center">
+    <h4 class="my-5 text-md-end text-left" >
+      <span class="text-white bg-secondary px-4">会員情報編集</span>
+    </h4>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-1">
+    </div>
+  </div>
+  <%= form_with model: @customer, url: customers_path(@customer.id), method: :patch, local:true do |f| %>
+      <div class="row d-flex justify-content-center mb-3">
+          <div class="col-md-2">
+            <label>名前</label>
+          </div>
+          <div class="col-md-2 "> 
+            <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
+          </div>
+          <div class="col-md-2">
+            <%= f.text_field :last_name, autofocus: true, class: "form-control" %>  
+          </div>
+      </div>
+      <div class="row d-flex justify-content-center mb-3">
+          <div class="col-md-2">
+            <label>フリガナ</label>
+          </div>
+          <div class="col-md-2 "> 
+            <%= f.text_field :first_name_kana, autofocus: true, class: "form-control" %>
+          </div>
+          <div class="col-md-2">
+            <%= f.text_field :last_name_kana, autofocus: true, class: "form-control" %>  
+          </div>
+      </div>
+      <div class="row d-flex justify-content-center mb-3">
+          <div class="col-md-2">
+            <%= f.label :postal_code, "郵便番号" %><br>
+          </div>
+          <div class="col-md-2 "> 
+            <%= f.text_field :postal_code, class: 'form-control' %>
+          </div>
+           <div class="col-md-2">
+          </div>
+      </div>
+      <div class="row d-flex justify-content-center mb-3">
+          <div class="col-md-2">
+            <%= f.label :address, "住所" %><br>
+          </div>
+          <div class="col-md-4 "> 
+            <%= f.text_field :address, class: 'form-control' %>
+          </div>
+      </div>
+      <div class="row d-flex justify-content-center mb-3">
+          <div class="col-md-2">
+            <%= f.label :telephone_number, "電話番号" %><br>
+          </div>
+          <div class="col-md-2 "> 
+            <%= f.text_field :telephone_number, class: 'form-control' %>
+          </div>
+           <div class="col-md-2">
+          </div>
+      </div>
+       <div class="row d-flex justify-content-center mb-3">
+          <div class="col-md-2">
+            <%= f.label :email, "メールアドレス" %>
+          </div>
+          <div class="col-md-2 "> 
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>  
+          </div>
+          <div class="col-md-2">
+          </div>
+      </div>
+      
+      <div class="actions d-flex justify-content-center ">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-3">
+          <%= f.submit '編集内容を保存', class: 'btn-lg btn-success border-0 ' %>  
+        </div>
+        <div class="col-md-1">
+           <%= link_to "退会する",  customers_confirmation_path, class: 'btn btn-primary btn-block px-5' %>
+    </div>
+        </div>
+      </div>
+    <% end %>
+    
+</div>
