@@ -1,42 +1,71 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h2>注文履歴詳細</h2>
-
-      <table>
-       <tr>
-        <th>購入者</th>
-        <td><%= @order.name %></td>
-
-      </tr>
-      <tr>
-        <th>配送先</th>
-        <td>〒<%= @order.postal_code %> <%= @order.address %><br><%= @order.name %></td>
-      </tr>
-      <tr>
-        <th>支払い方法</th>
-        <td>
-          <% if @order.payment_method == "credit_card" %>
-            <%= Order.payment_methods_i18n[:credit_card] %>
-          <% elsif @order.payment_method == "transfer" %>
-            <%= Order.payment_methods_i18n[:transfer] %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-
-        <th>注文ステータス</th>
-        <td>
-          <%= form_for @order, url: admin_order_path do |f| %>
-          　<%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]}, style: "margin-top:10px;" %>
-          <%= f.submit "更新" ,class: "btn btn-primary btn-sm" %></td>
-          <% end %>
-        </tr>
-      </table>
+      <h4 class="my-5 text-md-end text-left" >
+      <span class="text-white bg-secondary px-4">注文履歴詳細</span>
+    </h4>
+    <div class="row d-flex justify-content-start mb-2">
+      <div class="col-md-2">
+        <h5><strong>購入者</strong></h5>
+      </div>
+      <div class="col-md-2 ">
+        <h5><%= link_to @order.name, admin_customer_path(@order.id) %></h5>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+    <div class="row d-flex justify-content-start mb-2">
+      <div class="col-md-2">
+        <h5><strong>注文日</strong></h5>
+      </div>
+      <div class="col-md-2 ">
+        <h5><%= link_to @order.name, admin_customer_path(@order.id) %></h5>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+    <div class="row d-flex justify-content-start mb-2">
+      <div class="col-md-2">
+        <h5><strong>配送先</strong></h5>
+      </div>
+      <div class="col-md-4 ">
+        <h5>〒<%= @order.postal_code %> <%= @order.address %><br><%= @order.name %></h5>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-start mb-2">
+      <div class="col-md-2">
+        <h5><strong>支払方法</strong></h5>
+      </div>
+      <div class="col-md-2 ">
+        <% if @order.payment_method == "credit_card" %>
+          <%= Order.payment_methods_i18n[:credit_card] %>
+        <% elsif @order.payment_method == "transfer" %>
+          <%= Order.payment_methods_i18n[:transfer] %>
+        <% end %>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+    <div class="row d-flex justify-content-start mb-2">
+      <div class="col-md-2">
+        <h5><strong>注文ステータス</strong></h5>
+      </div>
+      <div class="col-md-2 mb-4">
+        <div class="row">
+           <%= form_for @order, url: admin_order_path do |f| %>
+          <%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]}, style: "margin-top:10px;" %>
+          <%= f.submit "更新" , class: " btn-sm btn-success border-0" %></td>
+        <% end %>
+        </div>
+       
+      </div>
+      <div class="col-md-2">
+      </div>
     </div>
   </div>
-  <div>
-    <div class=" col-md-9">
+  </div>  
+  <div class="row">
+    <div class=" col-md-8">
       <table class="table ">
         <tr>
           <th>商品名</th>
@@ -52,24 +81,23 @@
           <td><%= order_detail.purchase_amount %></td>
           <td><%= order_detail.amount %></td>
           <td><%= ((order_detail.purchase_amount)*(order_detail.amount)) %> </td>
-
-          <%= form_for order_detail,url: admin_order_detail_path(order_detail) do |f| %>
           <td>
-            <%= f.select :crafting_status, OrderDetail.crafting_statuses.keys.map {|k| [I18n.t("enums.order_detail.crafting_status.#{k}"), k]}, style: "margin-top:10px;" %>
+            <div class="row">
+              <%= form_for order_detail,url: admin_order_detail_path(order_detail) do |f| %>
+                <%= f.select :crafting_status, OrderDetail.crafting_statuses.keys.map {|k| [I18n.t("enums.order_detail.crafting_status.#{k}"), k]}, style: "margin-top:10px;" %>
+                <%= f.submit "更新" ,class:"btn-sm btn-success border-0" %>
+              <% end %>
+            </div>
           </td>
-          
-          <td><%= f.submit "更新" ,class:"btn btn-primary btn" %></td>
-          <% end %>
         </tr>
           <% end %>
       </table>
     </div>
-
-    <div>
-     <h4>商品合計     <%= @order.billing_amount %>円</h4>
-     <h4>送料　　　    <%= @order.postage %>円</h4>
-     <h4>請求金額合計　<%= (@order.billing_amount + @order.postage) %>円</h4>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-3">
+     <h5><strong>商品合計</strong>　　　　<%= @order.billing_amount %>円</h5>
+     <h5><strong>送料</strong>　　　　　　<%= @order.postage %>円</h5>
+     <h5><strong>請求金額合計</strong>　　<strong><%= (@order.billing_amount + @order.postage) %>円</strong></h5>
     </div>
   </div>
-
-</div>

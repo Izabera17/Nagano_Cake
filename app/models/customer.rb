@@ -19,9 +19,9 @@ class Customer < ApplicationRecord
                    message: "全角カタカナのみで入力して下さい"
                  }
   validates :email,uniqueness: true, presence: true
-  validates :postal_code, presence: true,format: {with: /\A\d{7}\z/}
+  validates :postal_code, presence: true, numericality: {only_integer: true}, length: { is: 7} 
   validates :address, presence: true
-  validates :telephone_number, presence: true,format: {with: /\A\d{10,11}\z/}
+  validates :telephone_number, presence: true, numericality: {only_integer: true}, format: {with: /\A\d{10,11}\z/}
   
   def active_for_authentication?
     super && (is_deleted == false)

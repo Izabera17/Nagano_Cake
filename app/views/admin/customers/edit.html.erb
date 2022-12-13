@@ -1,2 +1,102 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container-fluid">
+  <% if @customer.errors.any? %>
+  <%= @customer.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @customer.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <div class="row mb-1 justify-content-center">
+    <h4 class="my-5 text-md-end text-left" >
+      <span class="text-white bg-secondary px-4">
+        <%= @customer.first_name %><%= @customer.last_name %>さんの会員情報編集
+      </span>
+    </h4>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-1">
+    </div>
+  </div>
+ <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch, local:true do |f| %>
+      <div class="row d-flex justify-content-center mb-3">
+          <div class="col-md-2 mt-2">
+            <label>氏名</label>
+          </div>
+          <div class="col-md-2 "> 
+            <%= f.text_field :first_name, autofocus: true, class: "form-control", :placeholder => "令和" %>
+          </div>
+          <div class="col-md-2">
+            <%= f.text_field :last_name, autofocus: true, class: "form-control", :placeholder => "道子" %>  
+          </div>
+      </div>
+      <div class="row d-flex justify-content-center mb-3">
+          <div class="col-md-2 mt-2">
+            <label>フリガナ</label>
+          </div>
+          <div class="col-md-2 "> 
+            <%= f.text_field :first_name_kana, autofocus: true, class: "form-control", :placeholder => "レイワ" %>
+          </div>
+          <div class="col-md-2">
+            <%= f.text_field :last_name_kana, autofocus: true, class: "form-control", :placeholder => "ミチコ" %>  
+          </div>
+      </div>
+      <div class="row d-flex justify-content-center mb-3">
+          <div class="col-md-2 mt-2">
+            <%= f.label :postal_code, "郵便番号(ハイフンなし)" %><br>
+          </div>
+          <div class="col-md-2 "> 
+            <%= f.text_field :postal_code, class: 'form-control', :placeholder => "0000000" %>
+          </div>
+          <div class="col-md-2">
+          </div>
+      </div>
+      <div class="row d-flex justify-content-center mb-3">
+          <div class="col-md-2 mt-2">
+            <%= f.label :address, "住所" %><br>
+          </div>
+          <div class="col-md-4 "> 
+            <%= f.text_field :address, class: 'form-control', :placeholder => "東京都渋谷区代々木神園町0-0" %>
+          </div>
+      </div>
+      <div class="row d-flex justify-content-center mb-3">
+          <div class="col-md-2 mt-2">
+            <%= f.label :telephone_number, "電話番号(ハイフンなし)" %><br>
+          </div>
+          <div class="col-md-2 "> 
+            <%= f.text_field :telephone_number, class: 'form-control', :placeholder => "00000000000" %>
+          </div>
+          <div class="col-md-2">
+          </div>
+      </div>
+      <div class="row d-flex justify-content-center mb-3">
+          <div class="col-md-2 mt-2">
+            <%= f.label :email, "メールアドレス" %>
+          </div>
+          <div class="col-md-2 "> 
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", :placeholder => "sample@example.com" %>  
+          </div>
+          <div class="col-md-2">
+          </div>
+      </div>
+      <div class="row d-flex justify-content-center mb-4">
+          <div class="col-md-2 mt-2">
+            <label>会員ステータス</label><br>
+          </div>
+          <div class="col-md-2 mt-2"> 
+            <%= f.radio_button :is_deleted, 'false' %>
+            <%= f.label :is_deleted, '有効', value: 0, class: "mr-4" %>  
+      
+            <%= f.radio_button :is_deleted, 'true' %>
+            <%= f.label :is_deleted, '退会', value: 1 %>  
+          </div>
+          <div class="col-md-2">
+          </div>
+      </div>
+    
+      <div class="actions d-flex justify-content-center">
+        <%= f.submit '変更を保存', class: 'btn-lg btn-success border-0' %>
+      </div>
+      
+  <% end %>
+</div>
