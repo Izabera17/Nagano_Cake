@@ -19,7 +19,7 @@
         <h5><strong>注文日</strong></h5>
       </div>
       <div class="col-md-2 ">
-        <h5><%= link_to @order.name, admin_customer_path(@order.id) %></h5>
+        <h5><%= @order.created_at.strftime('%Y/%m/%d') %></h5>
       </div>
       <div class="col-md-2">
       </div>
