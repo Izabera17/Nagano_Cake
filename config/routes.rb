@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
-  # 顧客用
-  # URL /customers/sign_in ...
+
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
 
-  # 管理者用
-  # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
@@ -19,16 +16,14 @@ Rails.application.routes.draw do
     resources :items, only:[:index,:show,:new] do
         get :search, on: :collection # ジャンル検索機能用
     end
+    
+    post 'items' => 'orders#information'
+    
     get "customers/mypage" => "customers#show"
     get "customers/information/edit" => "customers#edit"
     get "customers/confirmation" => "customers#confirmation"
     patch "customers/withdrawal" => "customers#withdrawal"
     patch "customers/information" => "customers#update"
-
-    resources :items, only: [:index, :show] do
-      get :search, on: :collection # ジャンル検索機能用
-    end
-    post 'items' => 'orders#information'
 
     resources :cart_items do
      collection do

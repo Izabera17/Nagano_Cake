@@ -1,13 +1,24 @@
-<div class="row">
-  <div class="col-xs-3"></div>
-  <div class="col-xs-6">
-    <%= form_with url: admin_genre_path, model: @genre, local:true do |f| %>
-      <%= f.label :name, 'カテゴリー名' %>
-      <br>
-      <%= f.text_field :name, class:'form-control' %>
-      <br>
-      <%= f.submit '保存', class: 'btn btn-primary btn-block' %>
-    <% end %>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-5">
+      <h4 class="my-4 text-md-end text-left" >
+        <span class="text-white bg-secondary px-4">ジャンル編集</span>
+      </h4>
+    </div>
   </div>
-  <div class="col-xs-3"></div>
+  <div class="mt-5">
+    <%= form_with model: @genre, url: admin_genre_path(@genre.id) do |f| %>
+      <div class="row ">
+        <div class="col-md-2 mt-1">
+          <strong>ジャンル名</strong>
+        </div>
+        <div class="col-md-3 mt-1">
+          <%= f.text_field :name %>
+        </div>
+        <div class="col-md-2">
+          <%= f.submit "変更を保存する", class: "btn btn-primary" %>
+        </div>
+      </div>
+      <% end %>
+  </div>
 </div>

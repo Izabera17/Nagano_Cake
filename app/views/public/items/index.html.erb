@@ -4,24 +4,12 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-3">
-      <table class="table table-bordered">
-        <thead class="table-active">
-          <tr>
-            <th>ジャンル検索</th>
-          </tr>
-        </thead>
-        <tbody class="table-borderless">
-          <% @genres.each do |genre| %>
-            <td>
-              <%= link_to genre.name, items_path(genre_id: genre.id) %>
-            </td>
-        </tbody>
-        <% end %>
-      </table>
-    </div>
+    <%= render "public/shared/sidebar", genres: @genres %>
   	<div class="col-md-9">
-  	  <h2>商品一覧（全<span><%= @quantity %></span>件）</h2><br>
+  	  <h2>
+  	    商品一覧（全<span><%= @quantity %></span>件）
+  	   </h2>
+
   	    <div class="row">
   	      <% @items.each do |item| %>
             <div class="box">
@@ -33,13 +21,13 @@
               <% end %>
             <% end %>
               <p><%= item.name %></p>
-              <p>¥<%= (item.price*1.1).floor %></p> 
+              <p>¥<%= (item.price*1.1).floor %></p>
             </div>
           <% end %>
   	    </div>
         <div class="col-md-6 col-xs-offset-4 ">
           <%= paginate @items %>
-        </div> 
+        </div>
   	</div>
   </div>
 </div>

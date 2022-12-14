@@ -31,7 +31,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def edit
-    @items = Item.find(params[:cdid])
+    @items = Item.find(params[:id])
   end
 
 

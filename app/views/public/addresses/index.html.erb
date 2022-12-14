@@ -28,7 +28,7 @@
     </div>
   <% end %>
   
-  <table class="table col-md-8 mx-auto">
+  <table class="table col-md-8 mx-auto table-bordered">
     <% @addresses.each do |address| %>
     <thead class="bg-light">
       <tr>
@@ -43,8 +43,8 @@
         <td><%= address.postal_code %></th>
         <td><%= address.address %></td>
         <td><%= address.name %></td>
-        <td><%= link_to '編集する', edit_address_path(address.id), class: 'btn-sm btn-primary' %>
-            <%= link_to '削除', address_path(address.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn-sm btn-danger' %>
+        <td class="text-center"><%= link_to '編集する', edit_address_path(address.id), class: 'btn btn-primary' %>
+            <%= link_to '削除する', address_path(address.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
         </td>
       </tr>
     </tbody>
