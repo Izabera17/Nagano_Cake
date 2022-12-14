@@ -16,7 +16,7 @@
           confirmation: "入金確認"
           production: "製作中"
           preparation: "発送準備中"
-          sent: "発送済"
+          sent: "発送済み"
 
       order_detail:
         crafting_status:

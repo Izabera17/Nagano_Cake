@@ -52,7 +52,7 @@
       </div>
       <div class="col-md-2 mb-4">
         <div class="row">
-           <%= form_for @order, url: admin_order_path do |f| %>
+           <%= form_with model: @order, url: admin_order_path do |f| %>
           <%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]}, style: "margin-top:10px;" %>
           <%= f.submit "更新" , class: " btn-sm btn-success border-0" %></td>
         <% end %>
@@ -65,7 +65,7 @@
   </div>
   </div>  
   <div class="row">
-    <div class=" col-md-8">
+    <div class=" col-md-7">
       <table class="table ">
         <tr>
           <th>商品名</th>
@@ -78,12 +78,12 @@
         <%  @order_detail.each do |order_detail| %>
         <tr>
           <td><%= order_detail.item.name %></td>
-          <td><%= order_detail.purchase_amount %></td>
+          <td><%= order_detail.purchase_amount.to_s(:delimited) %></td>
           <td><%= order_detail.amount %></td>
-          <td><%= ((order_detail.purchase_amount)*(order_detail.amount)) %> </td>
+          <td><%= ((order_detail.purchase_amount)*(order_detail.amount)).to_s(:delimited) %> </td>
           <td>
             <div class="row">
-              <%= form_for order_detail,url: admin_order_detail_path(order_detail) do |f| %>
+              <%= form_with model: order_detail,url: admin_order_detail_path(order_detail) do |f| %>
                 <%= f.select :crafting_status, OrderDetail.crafting_statuses.keys.map {|k| [I18n.t("enums.order_detail.crafting_status.#{k}"), k]}, style: "margin-top:10px;" %>
                 <%= f.submit "更新" ,class:"btn-sm btn-success border-0" %>
               <% end %>
@@ -93,11 +93,14 @@
           <% end %>
       </table>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-2  ml-2">
+     <h5><strong>商品合計</strong></h5>
+     <h5><strong>送料</strong></h5>
+     <h5><strong>請求金額合計</strong></h5>
     </div>
-    <div class="col-md-3">
-     <h5><strong>商品合計</strong>　　　　<%= @order.billing_amount %>円</h5>
-     <h5><strong>送料</strong>　　　　　　<%= @order.postage %>円</h5>
-     <h5><strong>請求金額合計</strong>　　<strong><%= (@order.billing_amount + @order.postage) %>円</strong></h5>
+    <div class="col-md-2 text-right">
+      <h5><%= @order.billing_amount.to_s(:delimited) %>円</h5>
+      <h5> <%= @order.postage.to_s(:delimited) %>円</h5>
+      <h5><%= (@order.billing_amount + @order.postage).to_s(:delimited) %>円</h5>
     </div>
   </div>

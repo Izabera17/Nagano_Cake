@@ -8,7 +8,7 @@
   </div>
   <div class="row py-3">
     <div class=" col-md-2">
-      <h2>登録情報</h2>
+      <h4><strong>登録情報</strong></h4>
     </div>
     <div>
       <%= link_to "編集する", customers_information_edit_path, class: 'btn btn-success btn-block px-5' %>
@@ -17,34 +17,34 @@
   <table class="table table-bordered">
     <tbody>
       <tr>
-        <th>氏名</th>
-        <th><%= @customer.first_name %>　<%= @customer.last_name %></th>
+        <td class="table-active">氏名</td>
+        <td><%= @customer.first_name %>　<%= @customer.last_name %></td>
       </tr>
        <tr>
-        <th>フリガナ</th>
-        <th><%= @customer.first_name_kana %>　<%= @customer.last_name_kana %></th>
+        <td class="table-active">カナ</td>
+        <td><%= @customer.first_name_kana %>　<%= @customer.last_name_kana %></td>
       </tr>
        <tr>
-        <th>郵便番号</th>
-        <th><%= @customer.postal_code %></th>
+        <td class="table-active">郵便番号</td>
+        <td><%= @customer.postal_code %></td>
       </tr>
        <tr>
-        <th>住所</th>
-        <th><%= @customer.address %></th>
+        <td class="table-active">住所</td>
+        <td><%= @customer.address %></td>
       </tr>
       <tr>
-        <th>電話番号</th>
-        <th><%= @customer.telephone_number %></th>
+        <td class="table-active">電話番号</td>
+        <td><%= @customer.telephone_number %></td>
       </tr>
       <tr>
-        <th>メールアドレス</th>
-        <th><%= @customer.email %></th>
+        <td class="table-active">メールアドレス</td>
+        <td><%= @customer.email %></td>
       </tr>
     </tbody>  
   </table>
   <div class="row py-3">
     <div class=" col-md-2">
-      <h2>配送先</h2>
+      <h4><strong>配送先</strong></h4>
     </div>
     <div>
       <%= link_to "一覧を見る", addresses_path, class: 'btn btn-primary btn-block px-5' %>
@@ -52,7 +52,7 @@
   </div>
   <div class="row mb-3">
     <div class="col-md-2">
-      <h2>注文履歴</h2>
+      <h4><strong>注文履歴</strong></h4>
     </div>
     <div>
       <%= link_to "一覧を見る", orders_path, class: 'btn btn-primary btn-block px-5' %>

@@ -5,7 +5,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer.orders
+    @orders = current_customer.orders.page(params[:page])
   end
 
   def information
@@ -49,13 +49,12 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save!
-
     current_customer.cart_items.each do |cart_item|
       @order_item = OrderDetail.new
       @order_item.item_id = cart_item.item_id
       @order_item.amount = cart_item.amount
       @order_item.purchase_amount = (cart_item.item.price*1.1).floor
-      @order_item.order_id =  @order.id
+      @order_item.order_id = @order.id
       @order_item.save!
     end
 
@@ -64,7 +63,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(current_customer.id)
+    @order = Order.find(params[:id])
     @order_detail = @order.order_details
     @total = 0
   end

@@ -29,7 +29,6 @@
   <% end %>
   
   <table class="table col-md-8 mx-auto table-bordered">
-    <% @addresses.each do |address| %>
     <thead class="bg-light">
       <tr>
         <th>郵便番号></th>
@@ -38,6 +37,7 @@
         <th></th>
       </tr>
     </thead>
+    <% @addresses.each do |address| %>
     <tbody>
       <tr>
         <td><%= address.postal_code %></th>
