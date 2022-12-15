@@ -69,10 +69,12 @@
             <% end %>
           </ul>
           <ul class="navbar-nav ml-auto">
-          <form class="d-flex my-2 my-md-0 pt-4">
-            <input class="form-control me-2 nav-item d-inline p-2" type="search" placeholder="Search" placeholder="Search">
-            <button class="btn btn-outline-success text-nowrap" type="submit" >Search</button>
-          </form> 
+            <form class="d-flex my-2 my-md-0 pt-4">
+              <%= search_form_for @search, url: new_item_path do |f| %>
+                <%= f.search_field :name_cont, class: 'form-control', placeholder: '検索ワード' %>
+                <%= f.submit '検索', class: 'btn btn-primary' %>
+              <% end %>
+            </form> 
           </ul>
         </div>
       </div>

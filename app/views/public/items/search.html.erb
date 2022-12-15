@@ -1,0 +1,17 @@
+ <% if @item.exists? %> #①
+   <% @item.each do |item| %>
+      <div class="box">
+        <%= link_to item_path(item.id) do %>
+          <% if item.image.attached? %>
+            <%= image_tag item.image, size: '200x200' %>
+          <% else %>
+            <%= image_tag 'no_image.jpg' %>
+          <% end %>
+        <% end %>
+        <p><%= item.name %></p>
+        <p>¥<%= (item.price*1.1).floor %></p>
+      </div>
+    <% end %>
+　<% else %>
+  　　<p>該当する記事は見つかりませんでした。</p>
+　<% end %>

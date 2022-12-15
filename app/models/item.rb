@@ -8,6 +8,9 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true
   validates :price, presence: true
-
+  
+  def self.search(search_word)
+    Article.where(["name LIKE(?)", "%#{search_word}%"])
+  end
 end
   
