@@ -1,4 +1,5 @@
 class Admin::ItemsController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @item = Item.page(params[:page])
@@ -33,15 +34,6 @@ class Admin::ItemsController < ApplicationController
   def edit
     @items = Item.find(params[:id])
   end
-
-
-
-  def destroy
-    item = Item.find(params[:id])
-    item.destroy
-    redirect_to admin_items_path
-  end
-
 
   private
 
