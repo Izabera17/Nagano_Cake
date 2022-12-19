@@ -5,7 +5,8 @@
   </div>
   <div class="row">
     <%= render "public/shared/sidebar", genres: @genres %>
-  	<div class="col-md-9">
+    <div class="col-md-1"></div>
+  	<div class="col-md-8">
   	  <h2>
   	     <% if request.path.match(/\/search(\/)?/) %>
   	       <h2>
@@ -22,7 +23,7 @@
             <div class="box">
             <%= link_to item_path(item.id) do %>
               <% if item.image.attached? %>
-                <%= image_tag item.image, size: '200x200' %>
+                <%= image_tag item.image, size: '180x180' %>
               <% else %>
                 <%= image_tag 'no_image.jpg' %>
               <% end %>
