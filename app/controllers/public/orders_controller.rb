@@ -69,7 +69,7 @@ class Public::OrdersController < ApplicationController
     @order_detail = @order.order_details
     @total = 0
   end
-  
+
   private
 
   def order_params

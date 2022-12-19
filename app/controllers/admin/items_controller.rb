@@ -34,6 +34,7 @@ class Admin::ItemsController < ApplicationController
   def edit
     @items = Item.find(params[:id])
   end
+  
 
   private
 
