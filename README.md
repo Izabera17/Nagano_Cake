@@ -69,7 +69,19 @@ InstagramのDMやメールで通販の注文を受けていたが、情報管理
 メールアドレス：admin@admin <br>
 パスワード：testtest
 
+# 使用言語
+- HTML&CSS
+- Ruby
+- フレームワーク：Ruby on Rails (6.1.7)
 
+# Gem
+- devise
+- font-awesome-rails
+- kaminari(1.2.1)
+- ransack
+
+#作成者
+加藤大輝
 
 
 
