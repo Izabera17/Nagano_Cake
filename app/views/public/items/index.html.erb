@@ -7,10 +7,16 @@
     <%= render "public/shared/sidebar", genres: @genres %>
   	<div class="col-md-9">
   	  <h2>
-  	    （全<span><%= @quantity %></span>件）
-  	   </h2>
-  	   <%= @genre.id %>
-  	   
+  	     <% if request.path.match(/\/search(\/)?/) %>
+  	       <h2>
+  	         <strong><%= @genre.name %>一覧</strong><span style="font-size:25px;">（全<%= @quantity %>件）</span>
+  	       </h2>
+  	     <% else %>
+  	       <h2>
+  	         <strong>商品一覧</strong><span style="font-size:25px;">（全<span><%= @quantity %></span>件）
+  	       </h2>
+          <% end %>
+          
   	    <div class="row">
   	      <% @items.each do |item| %>
             <div class="box">
