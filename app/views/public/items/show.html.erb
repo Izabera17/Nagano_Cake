@@ -6,16 +6,16 @@
   <div class="row">
     <%= render "public/shared/sidebar", genres: @genres %>
     
-    <div class="col-md-5">
+    <div class="col-md-5 text-center">
   	  <% if @items.image.attached? %>
         <%= image_tag @items.image, size: '300x300' %>
       <% else %>
-        <%= image_tag 'no_image.jpg' %>
+        <%= image_tag 'no_image.png', size: '300x300' %>
       <% end %>
     </div>
     <div class="col-md-4">
     <%= form_with model: @cart_item, url: cart_items_path(@cart_item) do |f| %>
-      <div class="mb-4 mt-5 p-0"><h2><strong><%= @items.name %></strong></h2></div>
+      <div class="mb-4 p-0"><h2><strong><%= @items.name %></strong></h2></div>
       <div class="mb-3 p-0"><h2><%= @items.introduction %></h2></div>
       <div class="mb-3 p-0 mt-5">
         <h4>

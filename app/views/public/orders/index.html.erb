@@ -23,7 +23,7 @@
           <%= order_detail.item.name %></br>
         <% end %>
         </td>
-        <td class="pt-4"><%= order.billing_amount.to_s(:delimited) %>円</td>
+        <td class="pt-4"><%= ((order.billing_amount)+800).to_s(:delimited) %>円</td>
         <td class="pt-4">
           <% if order.order_status == "wait" %>
             <%= Order.order_statuses_i18n[:wait] %>

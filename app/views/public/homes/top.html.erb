@@ -29,7 +29,7 @@
                 <% if item.image.attached? %>
                   <%= image_tag item.image, size: '180x180' %>
                 <% else %>
-                  <%= image_tag 'no_image.jpg' %>
+                  <%= image_tag 'no_image.png', size: '180x180' %>
                 <% end %>
               <% end %>
               <p><%= item.name %></p>

@@ -15,7 +15,7 @@
         <% if @items.image.attached? %>
           <%= image_tag @items.image, size: '300x200' %>
         <% else %>
-          <%= image_tag 'no_image.jpg' %>
+          <%= image_tag 'no_image.png', size: '300x200' %>
         <% end %> 
       </div>
     </div>
@@ -58,5 +58,5 @@
   </div>
 </div>
 <div class="mx-auto mt-4">
-  <%= link_to "編集する", edit_admin_item_path(@items), class: 'btn-lg btn-success btn-block px-5' %>    
+  <%= link_to "編集する", edit_admin_item_path(@items), class: 'btn-lg btn-success btn-block px-5' %> 
 </div>
